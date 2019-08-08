@@ -1,0 +1,13 @@
+mat-table {
+  height: calc(100vh - 250px);
+  overflow: auto;
+}
+
+.mat-header-cell {
+  text-align: center;
+  background-color: #0db7ed;
+}
+
+.mat-cell {
+  text-align: center;
+}
