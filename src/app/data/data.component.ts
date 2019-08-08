@@ -1,10 +1,8 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import {
-  MatTableModule,
-  MatPaginator,
-  MatTableDataSource
-} from "@angular/material";
+import { MatPaginator, MatTableDataSource } from "@angular/material";
+
+import _ from "lodash";
 
 @Component({
   selector: "app-data",
@@ -35,7 +33,7 @@ export class DataComponent implements OnInit {
     );
     this.httpClient.get(endpoint + "?REF_DATE=2011").subscribe(
       data => {
-        console.log(data);
+        console.log(_.groupBy(data, "Energy type"));
       },
       error => {
         console.log(error);
