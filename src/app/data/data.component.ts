@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { MatPaginator, MatTableDataSource } from "@angular/material";
+import { UploadService } from "../service/upload.service";
 
 import _ from "lodash";
 
@@ -15,25 +16,19 @@ export class DataComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(
+    private uploadService: UploadService
+  ) {}
 
   ngOnInit() {
-    const endpoint = "http://localhost:3000/data";
-    this.httpClient.get(endpoint).subscribe(
+
+    this.uploadService.getData().subscribe(
       successData => {
-        this.operationalData.data = Object.values(successData);
+        this.operationalData.data = Object.values(successData[Object.keys(successData)[0]].data);
         this.operationalData.paginator = this.paginator;
         this.displayedColumns = Object.getOwnPropertyNames(
           this.operationalData.data[0]
         );
-      },
-      error => {
-        console.log(error);
-      }
-    );
-    this.httpClient.get(endpoint + "?REF_DATE=2011").subscribe(
-      data => {
-        console.log(_.groupBy(data, "Energy type"));
       },
       error => {
         console.log(error);

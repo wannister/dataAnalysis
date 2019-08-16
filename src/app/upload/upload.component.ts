@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { UploadService } from '../service/upload.service';
+import { UploadService } from "../service/upload.service";
 
 @Component({
   selector: "app-upload",
@@ -7,7 +7,8 @@ import { UploadService } from '../service/upload.service';
   styleUrls: ["./upload.component.css"]
 })
 export class UploadComponent implements OnInit {
-  fileToUpload: File = null;
+  fileToUpload: File;
+  reader = new FileReader();
 
   constructor(private uploadService: UploadService) {}
 
@@ -15,13 +16,26 @@ export class UploadComponent implements OnInit {
 
   handleFileInput(files: FileList) {
     this.fileToUpload = files.item(0);
+    this.reader.readAsText(this.fileToUpload);
   }
 
   uploadFileToActivity() {
-    this.uploadService.postFile(this.fileToUpload).subscribe(data => {
-      console.log("success");// do something, if upload success
-      }, error => {
+    this.uploadService.deleteData().subscribe(
+      data => {
+        console.log(data); // do something, if upload success
+      },
+      error => {
         console.log(error);
-      });
+      }
+    );
+
+    this.uploadService.postFile(this.reader.result).subscribe(
+      data => {
+        console.log(data); // do something, if upload success
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 }
