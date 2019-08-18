@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import Chart from "chart.js";
+import { UploadService } from "../service/upload.service";
 
 @Component({
   selector: "app-dashboard",
@@ -8,9 +9,32 @@ import Chart from "chart.js";
 })
 export class DashboardComponent implements OnInit {
   chart = [];
-  constructor() {}
+  chartData: Array<object>;
+  datasetAttributes: Array<string>;
+  selected: string;
+  chartXLabel: Array<string>;
+
+  constructor(private uploadService: UploadService) {}
 
   ngOnInit() {
+    this.uploadService.getData().subscribe(
+      successData => {
+        this.chartData = Object.values(
+          successData[Object.keys(successData)[0]]
+        );
+
+        this.datasetAttributes = Object.getOwnPropertyNames(this.chartData[0]);
+        console.log(this.datasetAttributes);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  testClick() {
+    console.log(this.selected);
+
     this.chart = new Chart("lineChart", {
       type: "line",
       data: {

@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DashboardComponent } from './dashboard.component';
+import { MatSelectModule } from "@angular/material/select";
+import { HttpClientModule } from "@angular/common/http";
+
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -8,6 +11,7 @@ describe('DashboardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ MatSelectModule, HttpClientModule ],
       declarations: [ DashboardComponent ]
     })
     .compileComponents();
@@ -17,9 +21,5 @@ describe('DashboardComponent', () => {
     fixture = TestBed.createComponent(DashboardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
   });
 });

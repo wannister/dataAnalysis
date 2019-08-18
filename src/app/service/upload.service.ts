@@ -7,7 +7,6 @@ import { catchError, tap } from "rxjs/operators";
   providedIn: "root"
 })
 export class UploadService {
-
   constructor(private httpClient: HttpClient) {}
 
   postFile(fileToUpload: any): Observable<object> {
@@ -27,24 +26,20 @@ export class UploadService {
   deleteData(): Observable<object> {
     const endpoint = "https://angularfirebase-a19eb.firebaseio.com/data.json";
 
-    return this.httpClient
-      .delete(endpoint)
-      .pipe(
-        catchError(error => {
-          return error;
-        })
-      );
+    return this.httpClient.delete(endpoint).pipe(
+      catchError(error => {
+        return error;
+      })
+    );
   }
 
   getData(): Observable<object> {
     const endpoint = "https://angularfirebase-a19eb.firebaseio.com/data.json";
 
-    return this.httpClient
-      .get(endpoint)
-      .pipe(
-        catchError(error => {
-          return error;
-        })
-      );
+    return this.httpClient.get(endpoint).pipe(
+      catchError(error => {
+        return error;
+      })
+    );
   }
 }

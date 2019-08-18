@@ -1,35 +1,54 @@
-import { TestBed, async } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { AppComponent } from './app.component';
+import { TestBed, async } from "@angular/core/testing";
+import { RouterTestingModule } from "@angular/router/testing";
+import { AppComponent } from "./app.component";
 
-describe('AppComponent', () => {
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
+import {
+  MatTableModule,
+  MatButtonModule,
+  MatPaginatorModule
+} from "@angular/material";
+import { MatSidenavModule } from "@angular/material/sidenav";
+import { MatIconModule } from "@angular/material/icon";
+import { MatSelectModule } from "@angular/material/select";
+
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+
+import { AppRoutingModule } from "./app-routing.module";
+import { UploadComponent } from "./upload/upload.component";
+import { HttpClientModule } from "@angular/common/http";
+import { DataComponent } from "./data/data.component";
+import { DashboardComponent } from "./dashboard/dashboard.component";
+
+describe("AppComponent", () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        BrowserModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        HttpClientModule,
+        MatTableModule,
+        MatSidenavModule,
+        MatButtonModule,
+        MatPaginatorModule,
+        MatIconModule,
+        MatSelectModule
       ],
       declarations: [
-        AppComponent
-      ],
+        AppComponent,
+        UploadComponent,
+        DataComponent,
+        DashboardComponent
+      ]
     }).compileComponents();
   }));
 
-  it('should create the app', () => {
+  it("should create the app", () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'analysis'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('analysis');
-  });
-
-  it('should render title in a h1 tag', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to analysis!');
   });
 });

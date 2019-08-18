@@ -7,6 +7,7 @@ import {
 } from "@angular/material";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatIconModule } from "@angular/material/icon";
+import { MatSelectModule } from "@angular/material/select";
 
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
@@ -33,7 +34,8 @@ import { DashboardComponent } from "./dashboard/dashboard.component";
     MatSidenavModule,
     MatButtonModule,
     MatPaginatorModule,
-    MatIconModule
+    MatIconModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

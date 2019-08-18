@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { MatPaginator, MatTableDataSource } from "@angular/material";
 import { UploadService } from "../service/upload.service";
 
@@ -16,15 +15,14 @@ export class DataComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(
-    private uploadService: UploadService
-  ) {}
+  constructor(private uploadService: UploadService) {}
 
   ngOnInit() {
-
     this.uploadService.getData().subscribe(
       successData => {
-        this.operationalData.data = Object.values(successData[Object.keys(successData)[0]].data);
+        this.operationalData.data = Object.values(
+          successData[Object.keys(successData)[0]]
+        );
         this.operationalData.paginator = this.paginator;
         this.displayedColumns = Object.getOwnPropertyNames(
           this.operationalData.data[0]
@@ -37,4 +35,8 @@ export class DataComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {}
+
+  getUniqueFromArray(array: Array<any>) {
+    return Array.from(new Set(array));
+  }
 }
