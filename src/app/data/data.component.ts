@@ -20,13 +20,9 @@ export class DataComponent implements OnInit {
   ngOnInit() {
     this.uploadService.getData().subscribe(
       successData => {
-        this.operationalData.data = Object.values(
-          successData[Object.keys(successData)[0]]
-        );
+        this.operationalData.data = Object.values(successData[Object.keys(successData)[0]]);
         this.operationalData.paginator = this.paginator;
-        this.displayedColumns = Object.getOwnPropertyNames(
-          this.operationalData.data[0]
-        );
+        this.displayedColumns = Object.getOwnPropertyNames(this.operationalData.data[0]);
       },
       error => {
         console.log(error);
@@ -35,8 +31,4 @@ export class DataComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {}
-
-  getUniqueFromArray(array: Array<any>) {
-    return Array.from(new Set(array));
-  }
 }

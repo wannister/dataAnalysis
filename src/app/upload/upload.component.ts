@@ -22,7 +22,7 @@ export class UploadComponent implements OnInit {
   uploadFileToActivity() {
     this.uploadService.deleteData().subscribe(
       data => {
-        console.log(data); // do something, if upload success
+        this.uploadService.openSnackBar("Upload Success", "Close");
       },
       error => {
         console.log(error);

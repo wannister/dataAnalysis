@@ -1,15 +1,85 @@
 <mat-form-field>
-  <mat-select [(value)]="selected">
-  <mat-option *ngFor="let attribute of datasetAttributes" value={{attribute}}>
-    {{attribute}}
-  </mat-option>
-</mat-select>
+  <mat-label>X-axis:</mat-label>
+  <mat-select [(value)]="selectedXaxis">
+    <mat-option *ngFor="let attribute of datasetAttributes" value="{{ attribute }}">
+      {{ attribute }}
+    </mat-option>
+  </mat-select>
 </mat-form-field>
-<p>You selected: {{selected}}</p>
+<mat-form-field>
+  <mat-label>Y-axis:</mat-label>
+  <mat-select [(value)]="selectedYaxis">
+    <mat-option *ngFor="let attribute of datasetAttributes" value="{{ attribute }}">
+      {{ attribute }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<mat-form-field>
+  <mat-label>Group by:</mat-label>
+  <mat-select [(value)]="selectedGroup">
+    <mat-option *ngFor="let attribute of datasetAttributes" value="{{ attribute }}">
+      {{ attribute }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<div fxLayout="row">
+  <mat-form-field>
+    <mat-label>Attribute 1 :</mat-label>
+    <mat-select [(value)]="firstAttribute" (selectionChange)="getFirstAttributeLimit($event.value)">
+      <mat-option *ngFor="let attribute of datasetAttributes" value="{{ attribute }}">
+        {{ attribute }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Limited by :</mat-label>
+    <mat-select [(value)]="firstAttributeLimitBy">
+      <mat-option *ngFor="let attribute of firstAttributeLimits" value="{{ attribute }}">
+        {{ attribute }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div fxLayout="row">
+  <mat-form-field>
+    <mat-label>Attribute 2 :</mat-label>
+    <mat-select [(value)]="secondAttribute" (selectionChange)="getSecondAttributeLimit($event.value)">
+      <mat-option *ngFor="let attribute of datasetAttributes" value="{{ attribute }}">
+        {{ attribute }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Limited by :</mat-label>
+    <mat-select [(value)]="secondAttributeLimitBy">
+      <mat-option *ngFor="let attribute of secondAttributeLimits" value="{{ attribute }}">
+        {{ attribute }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div fxLayout="row">
+  <mat-form-field>
+    <mat-label>Attribute 3 :</mat-label>
+    <mat-select [(value)]="thirdAttribute" (selectionChange)="getThirdAttributeLimit($event.value)">
+      <mat-option *ngFor="let attribute of datasetAttributes" value="{{ attribute }}">
+        {{ attribute }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Limited by :</mat-label>
+    <mat-select [(value)]="thirdAttributeLimitBy">
+      <mat-option *ngFor="let attribute of thirdAttributeLimits" value="{{ attribute }}">
+        {{ attribute }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<p>
+  <button mat-raised-button color="primary" (click)="generateGraph()">Create Graph!</button>
+</p>
 
 <div class="chart-wrapper">
   <canvas id="lineChart">{{ chart }}</canvas>
 </div>
-
-
-<button (click)="testClick()">Click me!</button>

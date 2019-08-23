@@ -3,12 +3,7 @@ import { RouterTestingModule } from "@angular/router/testing";
 import { AppComponent } from "./app.component";
 
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
-import {
-  MatTableModule,
-  MatButtonModule,
-  MatPaginatorModule
-} from "@angular/material";
+import { MatTableModule, MatButtonModule, MatPaginatorModule } from "@angular/material";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatIconModule } from "@angular/material/icon";
 import { MatSelectModule } from "@angular/material/select";
@@ -37,12 +32,7 @@ describe("AppComponent", () => {
         MatIconModule,
         MatSelectModule
       ],
-      declarations: [
-        AppComponent,
-        UploadComponent,
-        DataComponent,
-        DashboardComponent
-      ]
+      declarations: [AppComponent, UploadComponent, DataComponent, DashboardComponent]
     }).compileComponents();
   }));
 
